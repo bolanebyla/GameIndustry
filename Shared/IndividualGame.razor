@@ -6,15 +6,31 @@
             <p>@Game.Ganre</p>
             <p>@Game.ReleaseDate.ToString("dd.MM.yyyy")</p>
         </div>
+        @if (message != null) { 
+            <span class="text-danger">@message</span>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col offset-3">
+            <button class="btn btn-danger" @onclick="Delete">Delete</button>
+        </div>
     </div>
 }
 else
 {
-    <tr>
-        <td>@Game.Name</td>
-        <td>@Game.Ganre</td>
-        <td>@Game.ReleaseDate.ToString("dd.MM.yyyy")</td>
-    </tr>
+<tr>
+    <td>@Game.Name</td>
+    <td>@Game.Ganre</td>
+    <td>@Game.ReleaseDate.ToString("dd.MM.yyyy")</td>
+    <td>
+        <button class="btn btn-danger" @onclick="Delete">Delete</button>
+        @if (message != null)
+        {
+            <span class="text-danger pl-3">@message</span>
+        }
+    </td>
+</tr>
 }
 
 @code {
@@ -23,4 +39,13 @@ else
 
     [Parameter]
     public bool IsTable { get; set; }
+
+
+    string message;
+
+    void Delete()
+    {
+        // Delete logic ...
+        message = $"Game {Game.Name} deleted!";
+    }
 }
