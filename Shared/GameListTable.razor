@@ -20,11 +20,13 @@
             { 
                 @foreach (var item in Games)
                 {
-                    <tr>
+@*                    <tr>
                         <td>@item.Name</td>
                         <td>@item.Ganre</td>
                         <td>@item.ReleaseDate.ToString("dd.MM.yyyy")</td>
-                    </tr>
+                    </tr>*@
+
+                    <IndividualGame Game="item" IsTable="true" />
                 }
             }
         </tbody>
