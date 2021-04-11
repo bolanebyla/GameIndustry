@@ -5,7 +5,9 @@
                 <th>Name</th>
                 <th>Ganre</th>
                 <th>Release Date</th>
-                <th></th>
+                <th>
+                    <input type="checkbox" @onchange="(()=>displayButtons=!displayButtons)" />
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -18,16 +20,11 @@
                 <tr>NO ITEMS IN ARRAY</tr>
             }
             else
-            { 
+            {
                 @foreach (var item in Games)
                 {
-@*                    <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Ganre</td>
-                        <td>@item.ReleaseDate.ToString("dd.MM.yyyy")</td>
-                    </tr>*@
 
-                    <IndividualGame Game="item" IsTable="true" />
+                    <IndividualGame Game="item" IsTable="true" DisplayButtons="displayButtons" />
                 }
             }
         </tbody>
@@ -37,4 +34,6 @@
 @code {
     [Parameter]
     public List<Game> Games { get; set; }
+
+    bool displayButtons = false;
 }
