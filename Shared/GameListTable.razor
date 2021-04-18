@@ -13,20 +13,37 @@
         <tbody>
             @if (Games == null)
             {
-                <tr>LOADING DATA...</tr>
+                @if (NullList != null)
+                {
+                    <tr>@NullList</tr>
+                }
+                else
+                {
+                    <img src="https://media.tenor.com/images/a742721ea2075bc3956a2ff62c9bfeef/tenor.gif"
+                         style="height: 100px;" />
+
+                }
             }
             else if (Games.Count == 0)
             {
-                <tr>NO ITEMS IN ARRAY</tr>
+                @if (EmptyList != null)
+                {
+                    <tr>@EmptyList</tr>
+                }
+                else
+                {
+                    <span>empty</span>
+
+                }
             }
             else
             {
                 @foreach (var item in Games)
                 {
 
-                    <IndividualGame Game="item" 
-                                    IsTable="true" 
-                                    DisplayButtons="displayButtons" 
+                    <IndividualGame Game="item"
+                                    IsTable="true"
+                                    DisplayButtons="displayButtons"
                                     DeleteGame="DeleteTheGame" />
                 }
             }
@@ -37,6 +54,12 @@
 @code {
     [Parameter]
     public List<Game> Games { get; set; }
+
+    [Parameter]
+    public RenderFragment NullList { get; set; }
+
+    [Parameter]
+    public RenderFragment EmptyList { get; set; }
 
     bool displayButtons = false;
 

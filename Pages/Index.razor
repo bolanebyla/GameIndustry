@@ -13,8 +13,16 @@
     </div>
 </div>
 
-<GameListTable Games="games" />
-<IndividualGame Game="oneGameToShow" IsTable="false" DisplayButtons="true" SwitchGame="ShowNewGame" />
+<GameListTable Games="games">
+    <NullList>
+        <span style="text-align: center; color: red; font-weight: bolder;">Element loading...</span>
+    </NullList>
+
+    <EmptyList>
+        <span style="text-align: center; color: blue;">No elements in array...</span>
+    </EmptyList>
+</GameListTable>
+@*<IndividualGame Game="oneGameToShow" IsTable="false" DisplayButtons="true" SwitchGame="ShowNewGame" />*@
 
 @code{
 
@@ -22,61 +30,61 @@
     Random rnd;
     Game oneGameToShow;
 
-    protected override void OnInitialized()
-    {
-        games = new List<Game>()
-{
-            new Game()
-            {
-                Name = "Farming Simulator 2019",
-                Ganre = "Simulator",
-                ReleaseDate = new DateTime(2018, 11, 19)
-            },
-            new Game()
-            {
-                Name = "The Witcher 3",
-                Ganre = "Action/RPG",
-                ReleaseDate = new DateTime(2015, 05, 18)
-            },
-            new Game()
-            {
-                Name = "Distroy ALL Humans!",
-                Ganre = "Action-Adventure",
-                ReleaseDate = new DateTime(2020, 07, 28)
-            },
-        };
+    //protected override void OnInitialized()
+    //{
+    //    games = new List<Game>()
+    //    {
+    //        new Game()
+    //        {
+    //            Name = "Farming Simulator 2019",
+    //            Ganre = "Simulator",
+    //            ReleaseDate = new DateTime(2018, 11, 19)
+    //        },
+    //        new Game()
+    //        {
+    //            Name = "The Witcher 3",
+    //            Ganre = "Action/RPG",
+    //            ReleaseDate = new DateTime(2015, 05, 18)
+    //        },
+    //        new Game()
+    //        {
+    //            Name = "Distroy ALL Humans!",
+    //            Ganre = "Action-Adventure",
+    //            ReleaseDate = new DateTime(2020, 07, 28)
+    //        },
+    //    };
 
-        rnd = new Random(DateTime.Now.Millisecond);
-        oneGameToShow = games[rnd.Next(0, games.Count)];
+    //    rnd = new Random(DateTime.Now.Millisecond);
+    //    oneGameToShow = games[rnd.Next(0, games.Count)];
 
-    }
+    //}
 
-    void ShowNewGame()
-    {
-        oneGameToShow = SwitchGame();
-    }
+    //void ShowNewGame()
+    //{
+    //    oneGameToShow = SwitchGame();
+    //}
 
-    Game SwitchGame()
-    {
-        Game tempGame;
+    //Game SwitchGame()
+    //{
+    //    Game tempGame;
 
-        if (games.Count >= 2)
-        {
-            int iterator = rnd.Next(0, games.Count);
-            tempGame = games[iterator];
-        }
-        else if (games.Count == 1)
-        {
-            tempGame = games[0];
-        }
-        else
-        {
-            return new Game()
-            {
-                Name = "No items in array!",
-                ReleaseDate = DateTime.Now
-            };
-        }
-        return tempGame;
-    }
+    //    if (games.Count >= 2)
+    //    {
+    //        int iterator = rnd.Next(0, games.Count);
+    //        tempGame = games[iterator];
+    //    }
+    //    else if (games.Count == 1)
+    //    {
+    //        tempGame = games[0];
+    //    }
+    //    else
+    //    {
+    //        return new Game()
+    //        {
+    //            Name = "No items in array!",
+    //            ReleaseDate = DateTime.Now
+    //        };
+    //    }
+    //    return tempGame;
+    //}
 }
